@@ -1,0 +1,10 @@
+{{#each users as |user|}}
+<div class="row align-center mb-5">
+    <div class="col-12">
+        <header>{{user.title}}</header>
+        <p>Posted By:{{user.name}} on {{user.dateCreated}}</p>
+    </div>
+    <div>
+        <p>{{user.entry}}</p>
+    </div>
+</div>
