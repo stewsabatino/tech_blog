@@ -1,0 +1,14 @@
+{{!-- homepage of all users posts --}}
+<div class="row align-center mb-5">
+    {{#each users as |user|}}
+    <div class="col-12">
+        <header>{{post.title}}</header>
+        <p>Posted By:{{user.name}} on {{post.dateCreated}}</p>
+    </div>
+    <div>
+        <p>{{post.entry}}</p>
+    </div>
+    {{/each}}
+</div>
+
+{{!-- How can I go through each card and assign two different values of post and user? --}}
