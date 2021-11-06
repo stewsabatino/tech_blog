@@ -6,25 +6,13 @@ const withAuth = require('../utils/auth')
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
+            include: [{model: User}, {model: Comment}],
             order: [['createdAt', 'ASC'], ['name', 'ASC']]
         })
         const posts = postData.map((post) => post.get({ plain: true }))
-
-        const commentData = await Post.findAll({
-            order: [['createdAt', 'ASC'], ['name', 'ASC']]
-        })
-        const comments = commentData.map((comment) => comment.get({ plain: true }))
-
-        const userData = await Post.findAll({
-            order: [['name', 'ASC']]
-        })
-        const users = userData.map((user) => user.get({ plain: true }))
-
-        
+        console.log(posts)
         res.render('homepage', {
             posts,
-            comments,
-            users,
             logged_in: req.session.logged_in,
         })
     } catch (err) {
@@ -42,21 +30,8 @@ router.get('/login', (req, res) => {
     res.render('log_in')
 });
 
-// POST on homepage to make a comment on a post
-router.post('/', (req, res) => {
-    if (logged_in) {
-        try {
-            // save comment to db and send back comment
-            const commentData = await User.findOne({ where: { user_id: req.body.user_id}})
-
-            res.json({ comment: commentData })
-
-        } catch (err) {
-            res.status(500).json(err)
-        }
-    } else {
-        // do nothing
-    }
+router.get('/signup', (req, res) => {
+    
 })
 
 module.exports = router;

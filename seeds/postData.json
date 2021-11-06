@@ -1,0 +1,12 @@
+[
+    {
+        "title": "tech blog",
+        "entry": "Welcome to the tech blog",
+        "user_id": 1
+    },
+    {
+        "title": "Second Post",
+        "entry": "Here is the second post in the tech blog",
+        "user_id": 3
+    }
+]

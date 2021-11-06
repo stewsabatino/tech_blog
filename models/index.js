@@ -21,7 +21,7 @@ Comment.belongsTo(Post, {
 });
 
 // users make the comments on posts
-User.hasMany(comment, {
+User.hasMany(Comment, {
     foreignKey: 'user_id'
 });
 
