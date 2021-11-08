@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
+
 const sequelize = require('./config/connection');
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -24,7 +25,7 @@ const sess = {
     })
 };
 
-app.use(session.sess)
+app.use(session(sess))
 
 // sets handlebars as the view/html of app
 app.engine('handlebars', hbs.engine);
@@ -36,7 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // route
-app.use(require(routes));
+app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}`));

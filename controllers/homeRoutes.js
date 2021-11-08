@@ -6,8 +6,7 @@ const withAuth = require('../utils/auth')
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
-            include: [{model: User}, {model: Comment}],
-            order: [['createdAt', 'ASC'], ['name', 'ASC']]
+            include: [{ model: User }, { model: Comment }],
         })
         const posts = postData.map((post) => post.get({ plain: true }))
         console.log(posts)
@@ -31,7 +30,12 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('signup')
 })
 
 module.exports = router;
