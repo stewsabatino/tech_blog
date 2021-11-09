@@ -38,11 +38,6 @@ router.get('/signup', (req, res) => {
     res.render('signup')
 })
 
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard')
-})
-
-
 // Get Single Post on homepage
 router.get('/posts/:id', async (req, res) => {
     try {
