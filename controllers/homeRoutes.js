@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../models')
 const withAuth = require('../utils/auth')
 
-// GET route to homepage
+// GET all posts on homepage
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -26,7 +26,7 @@ router.get('/login', (req, res) => {
         return;
     }
 
-    res.render('log_in')
+    res.render('login')
 });
 
 router.get('/signup', (req, res) => {
@@ -38,4 +38,31 @@ router.get('/signup', (req, res) => {
     res.render('signup')
 })
 
+router.get('/dashboard', (req, res) => {
+    res.render('dashboard')
+})
+
+
+// Get Single Post on homepage
+router.get('/posts/:id', async (req, res) => {
+    try {
+        const postData = Post.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [
+                { model: Comment },
+                { model: User }
+            ],
+        })
+        const posts = postData.get({ plain: true })
+        console.log(posts)
+        res.render('singlePost', {
+            posts,
+            logged_in: req.session.logged_in,
+        })
+    } catch (err) {
+        res.status(500).json(err);
+        };
+})
 module.exports = router;

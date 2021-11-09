@@ -1,6 +1,4 @@
-{{!-- logged in user's posts --}}
-<div class="row align-center m-3 border">
-    {{#each posts as |post|}}
+<form class="row align-center m-3 border">
     <div class="m-4 border">
         <div class="border row m-2">
             <header>{{post.title}}</header>
@@ -9,6 +7,10 @@
         <div>
             <p class="m-2">{{post.entry}}</p>
         </div>
+        <input class="form-input" type="text"></input>
+        <div>
+            <button type="submit">submit</button>
+        </div>
+
     </div>
-    {{/each}}
-</div>
+</form>

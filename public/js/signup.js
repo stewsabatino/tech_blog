@@ -1,4 +1,4 @@
-const singupFormHandler = async (event) => {
+const signupFormHandler = async (event) => {
     event.preventDefault();
   
     const user = document.querySelector('#user-login').value.trim();
@@ -6,7 +6,7 @@ const singupFormHandler = async (event) => {
     const password = document.querySelector('#password-login').value.trim();
   
     if (user && email && password) {
-      const response = await fetch('/api/users/login', {
+      const response = await fetch('/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({ user, email, password }),
         headers: { 'Content-Type': 'application/json' },
@@ -18,7 +18,7 @@ const singupFormHandler = async (event) => {
         alert('Failed to sign up');
       }
     }
-  };
+};
   
   document
     .querySelector('.signup-form')
