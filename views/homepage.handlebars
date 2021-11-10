@@ -3,11 +3,15 @@
     {{#each posts as |post|}}
     <div class="m-4 border">
         <div class="border row m-2">
-            <header>{{post.title}}</header>
+            <header> <a href="/posts/{{post.id}}">{{post.title}}</a> </header>
+            {{post.entry}}
             <p>Posted By: {{post.user.name}} on {{post.createdAt}}</p>
         </div>
+
         <div>
-            <p class="m-2">{{post.entry}}</p>
+            {{#each post.comments}}
+            <p class="m-2">{{entry}}</p>
+            {{/each}}
         </div>
     </div>
     {{/each}}
