@@ -4,7 +4,7 @@
     <div class="m-4 border">
         <div class="border row m-2">
             <header>{{post.title}}</header>
-            <p>Posted By: {{post.user.name}} on {{post.createdAt}}</p>
+            <p>Posted By: {{post.user.name}} on {{format_date post.createdAt}}</p>
         </div>
         <div>
             <p class="m-2">{{post.entry}}</p>

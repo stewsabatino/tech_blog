@@ -38,7 +38,7 @@ router.get('/signup', (req, res) => {
     res.render('signup')
 })
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
             where: {
@@ -60,8 +60,8 @@ router.get('/dashboard', async (req, res) => {
 
 // Get Single Post on homepage
 router.get('/posts/:id', async (req, res) => {
-    // console.log(req.params)
-    // try {
+    console.log(req.params)
+    try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
                 { model: Comment },
@@ -77,8 +77,8 @@ router.get('/posts/:id', async (req, res) => {
             posts,
             logged_in: req.session.logged_in,
         })
-    // } catch (err) {
-    //     res.status(500).json(err);
-    //     };
+    } catch (err) {
+        res.status(500).json(err);
+        };
 })
 module.exports = router;

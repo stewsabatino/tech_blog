@@ -5,7 +5,7 @@
         <div class="border row m-2">
             <header> <a href="/posts/{{post.id}}">{{post.title}}</a> </header>
             {{post.entry}}
-            <p>Posted By: {{post.user.name}} on {{post.createdAt}}</p>
+            <p>Posted By: {{post.user.name}} on {{format_date post.createdAt}}</p>
         </div>
 
         <div>
